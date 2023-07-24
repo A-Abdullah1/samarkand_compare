@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 16:24+0000\n"
-"PO-Revision-Date: 2019-11-27 16:24+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2021-05-04 15:19+0000\n"
+"PO-Revision-Date: 2021-05-04 17:19+0200\n"
+"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. module: purchase_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:purchase_order_product_recommendation.purchase_order_recommendation_view_form
@@ -139,6 +140,16 @@ msgid "Product Categories"
 msgstr "Categorías de productos"
 
 #. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_name
+msgid "Product Name"
+msgstr ""
+
+#. module: purchase_order_product_recommendation
+#: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation_line__product_code
+msgid "Product reference"
+msgstr "Referencia del producto"
+
+#. module: purchase_order_product_recommendation
 #: model:ir.model.fields,field_description:purchase_order_product_recommendation.field_purchase_order_recommendation__line_ids
 msgid "Products"
 msgstr "Productos"
@@ -185,8 +196,8 @@ msgstr "Productos recomendados"
 
 #. module: purchase_order_product_recommendation
 #: model:ir.actions.act_window,name:purchase_order_product_recommendation.purchase_order_recommendation_action
-msgid "Recommended Products for this Customer"
-msgstr "Productos recomendados para este proveedor"
+msgid "Recommended Products for this Vendor"
+msgstr ""
 
 #. module: purchase_order_product_recommendation
 #: model:ir.model,name:purchase_order_product_recommendation.model_purchase_order_recommendation_line
@@ -223,6 +234,7 @@ msgstr ""
 "si no desea límite"
 
 #. module: purchase_order_product_recommendation
+#. odoo-python
 #: code:addons/purchase_order_product_recommendation/wizards/purchase_order_recommendation.py:0
 #, python-format
 msgid "This wizard is only valid for purchases"
@@ -297,3 +309,9 @@ msgstr "Asistente"
 #: model:ir.model.fields,help:purchase_order_product_recommendation.field_purchase_order_recommendation_line__partner_id
 msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
 msgstr ""
+
+#~ msgid "Recommended Products for this Customer"
+#~ msgstr "Productos recomendados para este proveedor"
+
+#~ msgid "Product name"
+#~ msgstr "Nombre de producto"

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <odoo>
     <record id="purchase_order_recommendation_view_form" model="ir.ui.view">
         <field name="name">Recommended Products for this Vendor</field>
@@ -34,8 +33,8 @@
                             <field name="show_all_products" />
                         </group>
                     </group>
-                    <group>
-                        <field name="line_ids" nolabel="1">
+                    <group col="2">
+                        <field name="line_ids" nolabel="1" colspan="2">
                             <tree
                                 decoration-info="purchase_line_id != False"
                                 decoration-success="units_included &gt; 0 and not purchase_line_id"
@@ -49,6 +48,18 @@
                                 <field name="purchase_line_id" invisible="1" />
                                 <field name="is_modified" invisible="1" />
                                 <field name="product_id" readonly="1" force_save="1" />
+                                <field
+                                    name="product_code"
+                                    readonly="1"
+                                    force_save="1"
+                                    optional="hide"
+                                />
+                                <field
+                                    name="product_name"
+                                    readonly="1"
+                                    force_save="1"
+                                    optional="hide"
+                                />
                                 <field name="price_unit" string="Price" />
                                 <field name="units_available" string="Qty On Hand" />
                                 <field
@@ -86,7 +97,6 @@
             </form>
         </field>
     </record>
-
     <record id="purchase_order_recommendation_action" model="ir.actions.act_window">
         <field name="name">Recommended Products for this Vendor</field>
         <field name="res_model">purchase.order.recommendation</field>
