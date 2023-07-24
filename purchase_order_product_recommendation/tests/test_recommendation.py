@@ -3,13 +3,13 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class RecommendationCase(TransactionCase):
+class RecommendationCase(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
+        super(RecommendationCase, cls).setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.category_obj = cls.env["product.category"]
         cls.categ1 = cls.category_obj.create({"name": "Test Cat 1"})
@@ -21,7 +21,7 @@ class RecommendationCase(TransactionCase):
                 "name": "Test Product 1",
                 "categ_id": cls.categ1.id,
                 "type": "product",
-                "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 5})],
+                "seller_ids": [(0, 0, {"name": cls.partner.id, "price": 5})],
             }
         )
         cls.prod_2 = cls.product_obj.create(
@@ -30,7 +30,7 @@ class RecommendationCase(TransactionCase):
                 "name": "Test Product 2",
                 "categ_id": cls.categ2.id,
                 "type": "product",
-                "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 10})],
+                "seller_ids": [(0, 0, {"name": cls.partner.id, "price": 10})],
             }
         )
         cls.prod_3 = cls.product_obj.create(
@@ -39,7 +39,7 @@ class RecommendationCase(TransactionCase):
                 "name": "Test Product 3",
                 "categ_id": cls.categ2.id,
                 "type": "product",
-                "seller_ids": [(0, 0, {"partner_id": cls.partner.id, "price": 7})],
+                "seller_ids": [(0, 0, {"name": cls.partner.id, "price": 7})],
             }
         )
         # Warehouses
@@ -237,9 +237,9 @@ class RecommendationCaseTests(RecommendationCase):
         line_prod_3 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_3)
         self.assertEqual(line_prod_3.times_delivered, 1)
         self.assertEqual(line_prod_3.units_delivered, 13)
-        self.assertEqual(line_prod_3.units_included, 8)
-        self.assertEqual(line_prod_3.units_available, 5)
-        self.assertEqual(line_prod_3.units_virtual_available, 5)
+        self.assertEqual(line_prod_3.units_included, 9)
+        self.assertEqual(line_prod_3.units_available, 4)
+        self.assertEqual(line_prod_3.units_virtual_available, 4)
 
     def test_action_accept(self):
         """Open wizard when there are PO Lines and click on Accept"""
@@ -248,6 +248,7 @@ class RecommendationCaseTests(RecommendationCase):
         )
         po_line.onchange_product_id()
         po_line.product_qty = 10
+        po_line._onchange_quantity()
         self.new_po.order_line = po_line
         # Create wizard and set dates
         wizard = self.wizard()
